@@ -40,3 +40,4 @@ Due to limitations in FastAPI, fuzzy paths (eg `sb,ns`) will not be possible at 
 - a Postgres Database (edit `libdb/config.py`).
 - a ViEWS2 `model hierarchy`, manually built in the database in the `structure`. I did not write a dependency compiler from `yaml`or from Frederick's model dataclasses since that in itself is a huge amount of work, for something that has been very static until now. Ideally, start with a simple structure dump (in `escwatransfer`).
 - `escwatransfer` to transfer data from `views2` (`janus` or `hermes`) into ESCWA. Access to `views2` or `views2 dumps` is required for transferring data.
+- **TODO** : dockerize this whole mess and write an INSTALL file.
