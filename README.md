@@ -13,13 +13,30 @@ Works, including basic filtering, but code is throwaway quality, as it is built 
 
 ## Supported paths and filters:
 
+### Paths:
 - LOA (required)
 - sb/ns/os (optional)
-- model (optional)
+- individual model (optional)
 
+Due to limitations in FastAPI, fuzzy paths (eg `sb,ns`) will not be possible at this time. Go one level above or run the API twice
+
+### Filters
+- space (priogrid, countries (lists allowed))
+- time (month)
+- **TODO** : time (ISO), space (BoundingBox, ISO)
+- **TODO** : stored filtersets (`escwa`, `africa` etc.)
+
+**Won't do** : Due to FastAPI limitations, `country=AFG,ALG` type filters are not available. You will have to work with `country=AFG&country=ALG` for multiple (Array-based) filters.
+
+### Paging
+- works. Implemented next_url and prev_url URL scheme for user convenience.
+
+### Security and 
+- No SQL injection should be possible (dual layer of abstraction via FastAPI and SQLAlchemy) but no ORM (so no guarantees)
+- **TODO** : API key (maybe?)
 
 ## Requires :
 
-- a PostGres Database.
-- `escwatransfer` to transfer data from `views2` (`janus`) into ESCWA
-- a ViEWS2 `model hierarchy`, manually built in the database. I did not write a dependency compiler from `yaml`or from Frederick's model dataclasses since that in itself is a huge amount of work, for something that has been very static until now.
+- a Postgres Database (edit `libdb/config.py`).
+- a ViEWS2 `model hierarchy`, manually built in the database in the `structure`. I did not write a dependency compiler from `yaml`or from Frederick's model dataclasses since that in itself is a huge amount of work, for something that has been very static until now. Ideally, start with a simple structure dump (in `escwatransfer`).
+- `escwatransfer` to transfer data from `views2` (`janus` or `hermes`) into ESCWA. Access to `views2` or `views2 dumps` is required for transferring data.
