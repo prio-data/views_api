@@ -2,7 +2,8 @@ from .config import db_url, schema, allowed_loas
 from sqlalchemy import create_engine, text, select, Table, MetaData
 from .ViEWSModel import ModelLOA, ModelTV
 from typing import List
-
+from dateparser import parse as date_parse
+from datetime import date
 
 class Run:
     def __init__(self, id, engine, schema=schema):
@@ -203,12 +204,48 @@ class PageFetcher:
         if self.row_id == 'country_id' and countryid is not None:
             self.where_queries += [text('country_id = ANY(:country_id)').bindparams(country_id=countryid)]
 
+    def register_where_iso(self, iso: List[str]):
+        if iso is not None:
+            iso = [i.upper().strip("'\" ") for i in iso]
+            iso = [i for i in iso if len(i) == 3]
+            if len(iso)>0:
+                local_query = text("SELECT DISTINCT id FROM structure.country WHERE isoab=ANY(:iso)").bindparams(iso=iso)
+                with self.engine.connect() as conn:
+                    result = conn.execute(local_query).fetchall()
+                    countries = [i[0] for i in result]
+                    if len(countries)>0:
+                        self.register_where_countryid(countries)
+
+    def register_where_gwno(self, gwno:List[int]):
+        if gwno is not None:
+            local_query = text("SELECT DISTINCT id FROM structure.country WHERE gwcode=ANY(:gwno)").bindparams(gwno=gwno)
+            with self.engine.connect() as conn:
+                result = conn.execute(local_query).fetchall()
+                countries = [i[0] for i in result]
+                if len(countries)>0:
+                    self.register_where_countryid(countries)
+
 
     def register_where_monthid(self, monthid: List):
         if monthid is not None:
-            print('monthid:', monthid)
+            #print('monthid:', monthid)
             self.where_queries += [text('month_id = ANY(:month_id)').bindparams(month_id=monthid)]
 
+    def __date_parse(self, in_date):
+        in_date = date_parse(in_date)
+        return (in_date.year-1980)*12+in_date.month
+
+    def register_where_dates(self, date_start, date_end):
+        if date_start is not None or date_end is not None:
+            if date_start is None:
+                date_start = '1980-01-01'
+            if date_end is None:
+                date_end = '2100-01-01'
+            month_start = self.__date_parse(date_start)
+            month_end = self.__date_parse(date_end)
+            if month_start > month_end:
+                month_start, month_end = month_end, month_start
+            self.register_where_monthid(list(range(month_start, month_end+1)))
 
     def fetch(self, page):
         if not self.components:
@@ -231,5 +268,4 @@ class PageFetcher:
                 query = query.where(where_query)
 
         with self.engine.connect() as conn:
-            result_set = conn.execute(query)
-            return result_set.fetchall()
+            return conn.execute(query).fetchall()

@@ -49,6 +49,9 @@ isStepsQuery = Query(default=False, title="Include stepwise Predictions",
                                  "best results. "
                                  "Note that this flag only makes sense if data = True and has no effect for"
                                  "dinamically simulated (dynasim/ds) models or similar.")
+isoQuery = Query(default=None, title="ISO 3-letter country code",
+                 description="A 3 letter country code for filtering (e.g. JPN for Japan).")
+
 
 def __subset_helper(cur_run, loa=None, tv=None, model = None):
     if loa is None:
@@ -71,6 +74,7 @@ def __subset_helper(cur_run, loa=None, tv=None, model = None):
         subset = subset
 
     return subset
+
 
 def __next_urls(request: Request, page_count:int):
     """
@@ -116,6 +120,7 @@ async def get_root():
     """
     return {'runs': vRuns.list_runs()}
 
+
 @app.get("/{run}")
 async def get_run(run: AvailableRuns):
     """
@@ -132,21 +137,26 @@ async def get_run(run: AvailableRuns):
             'data': None,
             'msg': 'To get data, select at least a LOA'}
 
+
 @app.get("/{run}/{loa}")
-async def get_run(run: AvailableRuns, loa: AvailableLoa, request: Request,
+async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViolence, model: AllModels, request: Request,
                   pagesize: int = Paging.pagesize,
                   page: int = Paging.page,
                   steps: bool = isStepsQuery,
                   data: bool = isDataQuery,
                   priogrid: List[int] = priogridQuery,
                   countryid: List[int] = countryQuery,
+                  iso: List[str] = isoQuery,
+                  gwno: List[int] = None,
                   month: List[int] = monthQuery,
                   date_start: str = dateQuery,
                   date_end: str = dateQuery,
-                  lat_north_east: float = latitude,
-                  lon_north_east: float = longitude,
-                  lat_south_east: float = latitude,
-                  lon_south_west: float = longitude):
+                  pg_ne: int = priogridQuery,
+                  pg_sw: int = priogridQuery,
+                  lat_ne: float = latitude,
+                  lon_ne: float = longitude,
+                  lat_sw: float = latitude,
+                  lon_sw: float = longitude):
 
     cur_run = vRuns.get_run(run.value)
     cur_run.fetch_model_tree()
@@ -162,8 +172,13 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, request: Request,
                                        components=steps)
 
         data_fetcher.register_where_priogrid(priogrid)
-        data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_countryid(countryid)
+        data_fetcher.register_where_iso(iso)
+        data_fetcher.register_where_gwno(gwno)
+
+        data_fetcher.register_where_monthid(month)
+        data_fetcher.register_where_dates(date_start, date_end)
+
 
         row_count, page_count = data_fetcher.total_counts()
         next_url, prev_url  = __next_urls(request, page_count=page_count)
@@ -182,20 +197,24 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, request: Request,
                 'models': simple_subset.simple}
 
 @app.get("/{run}/{loa}/{tv}")
-async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViolence, request: Request,
+async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViolence, model: AllModels, request: Request,
                   pagesize: int = Paging.pagesize,
                   page: int = Paging.page,
                   steps: bool = isStepsQuery,
                   data: bool = isDataQuery,
                   priogrid: List[int] = priogridQuery,
                   countryid: List[int] = countryQuery,
+                  iso: List[str] = isoQuery,
+                  gwno: List[int] = None,
                   month: List[int] = monthQuery,
                   date_start: str = dateQuery,
                   date_end: str = dateQuery,
-                  lat_north_east: float = latitude,
-                  lon_north_east: float = longitude,
-                  lat_south_east: float = latitude,
-                  lon_south_west: float = longitude):
+                  pg_ne: int = priogridQuery,
+                  pg_sw: int = priogridQuery,
+                  lat_ne: float = latitude,
+                  lon_ne: float = longitude,
+                  lat_sw: float = latitude,
+                  lon_sw: float = longitude):
 
 
     cur_run = vRuns.get_run(run.value)
@@ -213,8 +232,13 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                                        components=steps)
 
         data_fetcher.register_where_priogrid(priogrid)
-        data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_countryid(countryid)
+        data_fetcher.register_where_iso(iso)
+        data_fetcher.register_where_gwno(gwno)
+
+        data_fetcher.register_where_monthid(month)
+        data_fetcher.register_where_dates(date_start, date_end)
+
 
         row_count, page_count = data_fetcher.total_counts()
         next_url, prev_url  = __next_urls(request, page_count=page_count)
@@ -237,17 +261,21 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
 async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViolence, model: AllModels, request: Request,
                   pagesize: int = Paging.pagesize,
                   page: int = Paging.page,
-                  steps: bool = isDataQuery,
-                  data: bool = isStepsQuery,
+                  steps: bool = isStepsQuery,
+                  data: bool = isDataQuery,
                   priogrid: List[int] = priogridQuery,
                   countryid: List[int] = countryQuery,
+                  iso: List[str] = isoQuery,
+                  gwno: List[int] = None,
                   month: List[int] = monthQuery,
                   date_start: str = dateQuery,
                   date_end: str = dateQuery,
-                  lat_north_east: float = latitude,
-                  lon_north_east: float = longitude,
-                  lat_south_east: float = latitude,
-                  lon_south_west: float = longitude):
+                  pg_ne: int = priogridQuery,
+                  pg_sw: int = priogridQuery,
+                  lat_ne: float = latitude,
+                  lon_ne: float = longitude,
+                  lat_sw: float = latitude,
+                  lon_sw: float = longitude):
 
     cur_run = vRuns.get_run(run.value)
     cur_run.fetch_model_tree()
@@ -269,8 +297,13 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                                        components=steps)
 
         data_fetcher.register_where_priogrid(priogrid)
-        data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_countryid(countryid)
+        data_fetcher.register_where_iso(iso)
+        data_fetcher.register_where_gwno(gwno)
+
+        data_fetcher.register_where_monthid(month)
+        data_fetcher.register_where_dates(date_start, date_end)
+
 
         row_count, page_count = data_fetcher.total_counts()
         next_url, prev_url  = __next_urls(request, page_count=page_count)
