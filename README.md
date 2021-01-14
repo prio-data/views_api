@@ -21,9 +21,9 @@ Works, including basic filtering, but code is throwaway quality, as it is built 
 Due to limitations in FastAPI, fuzzy paths (eg `sb,ns`) will not be possible at this time. Go one level above or run the API twice
 
 ### Filters
-- space (priogrid, countries (lists allowed))
-- time (month)
-- **TODO** : time (ISO), space (BoundingBox, ISO)
+- space (priogrid, countries (lists allowed, as well as GWNO et.))
+- time (month, ISO dates)
+- **TODO** : space (BoundingBox, ISO)
 - **TODO** : stored filtersets (`escwa`, `africa` etc.)
 
 **Won't do** : Due to FastAPI limitations, `country=AFG,ALG` type filters are not available. You will have to work with `country=AFG&country=ALG` for multiple (Array-based) filters.
