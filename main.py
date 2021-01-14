@@ -135,11 +135,11 @@ async def get_run(run: AvailableRuns):
     return {'model_tree': cur_run.model_tree,
             'models': simple_subset.simple,
             'data': None,
-            'msg': 'To get data, select at least a LOA'}
+            'msg': 'To get data, select at least a level of analysis (LOA)'}
 
 
 @app.get("/{run}/{loa}")
-async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViolence, model: AllModels, request: Request,
+async def get_run(run: AvailableRuns, loa: AvailableLoa, request: Request,
                   pagesize: int = Paging.pagesize,
                   page: int = Paging.page,
                   steps: bool = isStepsQuery,
@@ -156,7 +156,9 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                   lat_ne: float = latitude,
                   lon_ne: float = longitude,
                   lat_sw: float = latitude,
-                  lon_sw: float = longitude):
+                  lon_sw: float = longitude,
+                  lat: float = latitude,
+                  lon: float = longitude):
 
     cur_run = vRuns.get_run(run.value)
     cur_run.fetch_model_tree()
@@ -175,6 +177,10 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
         data_fetcher.register_where_countryid(countryid)
         data_fetcher.register_where_iso(iso)
         data_fetcher.register_where_gwno(gwno)
+        data_fetcher.register_where_coord(lat,lon)
+        data_fetcher.register_where_bbox_pg(pg_ne, pg_sw)
+        data_fetcher.register_where_bbox_coord(corner1_lat=lat_ne, corner1_lon=lon_ne,
+                                               corner2_lat=lat_sw, corner2_lon=lon_sw)
 
         data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_dates(date_start, date_end)
@@ -197,7 +203,7 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                 'models': simple_subset.simple}
 
 @app.get("/{run}/{loa}/{tv}")
-async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViolence, model: AllModels, request: Request,
+async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViolence, request: Request,
                   pagesize: int = Paging.pagesize,
                   page: int = Paging.page,
                   steps: bool = isStepsQuery,
@@ -214,7 +220,9 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                   lat_ne: float = latitude,
                   lon_ne: float = longitude,
                   lat_sw: float = latitude,
-                  lon_sw: float = longitude):
+                  lon_sw: float = longitude,
+                  lat: float = latitude,
+                  lon: float = longitude):
 
 
     cur_run = vRuns.get_run(run.value)
@@ -235,6 +243,10 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
         data_fetcher.register_where_countryid(countryid)
         data_fetcher.register_where_iso(iso)
         data_fetcher.register_where_gwno(gwno)
+        data_fetcher.register_where_coord(lat,lon)
+        data_fetcher.register_where_bbox_pg(pg_ne, pg_sw)
+        data_fetcher.register_where_bbox_coord(corner1_lat=lat_ne, corner1_lon=lon_ne,
+                                               corner2_lat=lat_sw, corner2_lon=lon_sw)
 
         data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_dates(date_start, date_end)
@@ -275,7 +287,9 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                   lat_ne: float = latitude,
                   lon_ne: float = longitude,
                   lat_sw: float = latitude,
-                  lon_sw: float = longitude):
+                  lon_sw: float = longitude,
+                  lat: float = latitude,
+                  lon: float = longitude):
 
     cur_run = vRuns.get_run(run.value)
     cur_run.fetch_model_tree()
@@ -300,6 +314,10 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
         data_fetcher.register_where_countryid(countryid)
         data_fetcher.register_where_iso(iso)
         data_fetcher.register_where_gwno(gwno)
+        data_fetcher.register_where_coord(lat,lon)
+        data_fetcher.register_where_bbox_pg(pg_ne, pg_sw)
+        data_fetcher.register_where_bbox_coord(corner1_lat=lat_ne, corner1_lon=lon_ne,
+                                               corner2_lat=lat_sw, corner2_lon=lon_sw)
 
         data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_dates(date_start, date_end)

@@ -1,5 +1,11 @@
 from Priogrid import Priogrid
 
+a = Priogrid(49201)
+b = Priogrid.from_lat_lon(lat=55.25, lon=37.24)
+c = Priogrid.from_row_col(row=9, col=21).next_left().queen_contiguity()
+print(c)
+
+"""
 assert Priogrid(130521).queen_contiguity()[2][2].id==129802
 assert Priogrid.from_lat_lon(10.51, 2.29).id == 145085
 assert Priogrid.from_row_col(151, 412).id == 108412
@@ -26,3 +32,5 @@ assert Priogrid.id2lon(108213) == -73.75
 assert Priogrid.latlon2id(-14.78,25.86) == 108412
 assert Priogrid.latlon2id(-8.75, 179.25) == 117359
 assert Priogrid.latlon2id(70.75, 179.25) == 231839
+
+"""

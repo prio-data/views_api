@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, text, select, Table, MetaData
 from .ViEWSModel import ModelLOA, ModelTV
 from typing import List
 from dateparser import parse as date_parse
+from .Priogrid import Priogrid
 from datetime import date
 
 class Run:
@@ -224,6 +225,43 @@ class PageFetcher:
                 countries = [i[0] for i in result]
                 if len(countries)>0:
                     self.register_where_countryid(countries)
+
+    def register_where_bbox_pg(self, corner1, corner2):
+        if corner1 is not None and corner2 is not None:
+            corner1 = Priogrid(corner1)
+            corner2 = Priogrid(corner2)
+
+            row1 = corner1.row
+            row2 = corner2.row
+            if row1 > row2:
+                row2, row1 = row1, row2
+
+            pg = []
+
+            col1 = corner1.col
+            col2 = corner2.col
+            if col1 > col2:
+                col2, col1 = col1, col2
+
+            for i in range(col1, col2+1):
+                for j in range(row1, row2+1):
+                    pg += [Priogrid.from_row_col(j,i).id]
+
+            self.register_where_priogrid(pg)
+
+    def register_where_bbox_coord(self, corner1_lat, corner2_lat, corner1_lon, corner2_lon):
+        print ("COORD ",corner1_lat, corner2_lat, corner1_lon, corner2_lon)
+        if corner1_lat is not None and corner2_lon is not None and corner2_lat is not None and corner1_lon is not None:
+            corner1 = Priogrid.from_lat_lon(corner1_lat, corner1_lon).id
+            corner2 = Priogrid.from_lat_lon(corner2_lat, corner2_lon).id
+            print(f"With corners {corner1} -> {corner2}")
+            self.register_where_bbox_pg(corner1, corner2)
+
+    def register_where_coord(self, lat, lon):
+        if lat is not None and lon is not None:
+            print("LATLON")
+            pg = Priogrid.from_lat_lon(lat,lon).id
+            self.register_where_priogrid([pg])
 
 
     def register_where_monthid(self, monthid: List):
