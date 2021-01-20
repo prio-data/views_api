@@ -6,6 +6,7 @@ from libdb import DBModel
 from libdb.ViEWSModel import ModelTV, ModelLOA, simpleFactory
 from libdb.APIConfig import Paging
 from copy import deepcopy
+import uvicorn
 
 
 app = FastAPI()
@@ -87,30 +88,60 @@ def __next_urls(request: Request, page_count:int):
     :return: (next_url, prev_url): as urls.
     """
 
-    raw_query_params = request.query_params.__dict__['_dict']
-    print("RQP:", raw_query_params)
+    from urllib.parse import urlencode
 
+    # replace_query_params won't work, because FastAPI takes duplicate keys, but python dicts don't.
+    # So we need to work with ugly, nasty, string manipulations.
+
+    qpath = request.query_params.__dict__['_list']
     try:
         cur_page = int(request.query_params['page'])
     except:
         cur_page = 1
 
-    if cur_page < 1:
-        cur_page = 1
+    max_page = page_count
+    next_page = None
+    prev_page = None
 
-    if cur_page > 1:
-        raw_query_params_prev = deepcopy(raw_query_params)
-        raw_query_params_prev['page']=cur_page-1
-        prev_url = request.url.replace_query_params(**raw_query_params_prev)._url
+    if qpath is None:
+        qpath = []
+
+    qpath = [i for i in qpath if i[0] != 'page']
+
+    cur_page = 1 if cur_page < 1 else cur_page
+    cur_page = max_page if cur_page > max_page else cur_page
+
+    if cur_page == 1:
+        next_page = 2 if max_page > 1 else None
+
+    if cur_page > 1 and cur_page < max_page:
+        next_page = cur_page + 1
+        prev_page = cur_page - 1
+
+    if cur_page == max_page:
+        prev_page = cur_page - 1 if cur_page > 1 else None
+
+    qpath_next = deepcopy(qpath) + [('page', next_page)]
+    qpath_prev = deepcopy(qpath) + [('page', prev_page)]
+
+    qpath_next = urlencode([(i[0], i[1]) for i in qpath_next if i != ('page', None)])
+    qpath_prev = urlencode([(i[0], i[1]) for i in qpath_prev if i != ('page', None)])
+
+    print('prev:', qpath_prev)
+    print('next:', qpath_next)
+
+    if next_page is not None:
+        next_url = deepcopy(request.url)
+        next_url = str(next_url.replace(query=qpath_next))
+    else:
+        next_url = ''
+
+    if prev_page is not None:
+        prev_url = deepcopy(request.url)
+        prev_url = str(prev_url.replace(query=qpath_prev))
     else:
         prev_url = ''
 
-    if cur_page < page_count:
-        raw_query_params_next = deepcopy(raw_query_params)
-        raw_query_params_next['page']=cur_page+1
-        next_url = request.url.replace_query_params(**raw_query_params_next)._url
-    else:
-        next_url = ''
     return next_url, prev_url
 
 @app.get("/")
@@ -338,5 +369,11 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                 'prev_page': '',
                 'model_tree': model_tree,
                 'models': model_list}
+
+
+if __name__ == "__main__":
+    print ("Run this via uvicorn")
+    # To debug:
+    # uvicorn.run(app, host="0.0.0.0", port=8000)
 
 
