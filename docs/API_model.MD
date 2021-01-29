@@ -103,9 +103,13 @@ Mixing the three parameters will be interpreted as `AND`, i.e. `date_end=2019-01
 ### Example Queries:
 
 http://54.75.57.44:8000/d_2021_02_01/cm?iso=egy&month=501 : Fetch all Country-Month predictions (state-based, non-state, one-sided) for Egypt, for month 501 (September 2021). Page 1 will be retrieved.
+
 http://54.75.57.44:8000/d_2021_02_01/pgm/sb?iso=dza&month=500&month=501&pagesize=10 : Fetch all state-based PrioGrid month predictions for Algeria for Months 501 and 502 (September + October 2021). Page 1 will be retrieved.
+
 http://54.75.57.44:8000/d_2021_02_01/cm/ns?lat=20&lon=15&month=501 : Fetch all Non-state predictions at country month for the country located at latitude=20 and longitude=15 for month 501 (September 2021) 
+
 http://54.75.57.44:8000/d_2021_02_01/cm/sb/cm_sb_main?lat_ne=25&lon_ne=30&lat_sw=30&lon_sw=10&month=500 : Fetch all state-based country-level predictions for the main ensemble model for those countries located in a square bounded by 25N30E and 10S10E.
+
 http://54.75.57.44:8000/d_2021_02_01/pgm?iso=PAL&date_start=2010-01-01&date_end=2030-01-01: Fetch all PrioGrid based predictions for Palestine between 2020-01-01 and 2030-01-01.
 
 ### Further Reading:
