@@ -29,7 +29,7 @@ where the following address is the
 
 For example:
 
-http://54.75.57.44:8000/d_2021_02_01/cm/cm_sb_main
+http://54.75.57.44:8000/d_2021_02_01/cm/sb/cm_sb_main
 
 will return the following things: 
 
@@ -54,7 +54,7 @@ http://54.75.57.44:8000/d_2021_02_01/cm/
 
 You will get all the models at the `country-month` level of analysis for all types of violence (sb, ns and os). Similarly, if you call: 
 
-`http://54.75.57.44:8000/d_2021_02_01/cm/sb`
+http://54.75.57.44:8000/d_2021_02_01/cm/sb
 
 You will get all the models predicting state-based violence.
 
