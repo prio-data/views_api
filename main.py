@@ -42,6 +42,8 @@ longitude = Query(default=None, ge=-180, le=180,
 isDataQuery = Query(default=True, title="Return Model Tree metadata + Model data or just metadata",
                     description="True (the default) will return both the Model Tree Metadata for the given path "
                                 "as well as the data itself. False will only retrieve the Model Tree Metadata")
+isEscwa = Query(default=False, title="Return only ESCWA countries.",
+                description="If True, clears all other geographic filters and returns data for ESCWA countries")
 isStepsQuery = Query(default=False, title="Include stepwise Predictions",
                      description="[WARNING]: Only for advanced use. \n"
                                  "If True, will also yield all individual steps for the n-step ahead models. "
@@ -189,8 +191,9 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, request: Request,
                   lat_sw: float = latitude,
                   lon_sw: float = longitude,
                   lat: float = latitude,
-                  lon: float = longitude):
-
+                  lon: float = longitude,
+                  is_escwa: bool = isEscwa):
+    #Escwa
     cur_run = vRuns.get_run(run.value)
     cur_run.fetch_model_tree()
     subset = __subset_helper(cur_run, loa=loa.value)
@@ -212,6 +215,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, request: Request,
         data_fetcher.register_where_bbox_pg(pg_ne, pg_sw)
         data_fetcher.register_where_bbox_coord(corner1_lat=lat_ne, corner1_lon=lon_ne,
                                                corner2_lat=lat_sw, corner2_lon=lon_sw)
+        if is_escwa:
+            data_fetcher.register_where_escwa()
 
         data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_dates(date_start, date_end)
@@ -253,7 +258,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                   lat_sw: float = latitude,
                   lon_sw: float = longitude,
                   lat: float = latitude,
-                  lon: float = longitude):
+                  lon: float = longitude,
+                  is_escwa: bool = isEscwa):
 
 
     cur_run = vRuns.get_run(run.value)
@@ -278,6 +284,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
         data_fetcher.register_where_bbox_pg(pg_ne, pg_sw)
         data_fetcher.register_where_bbox_coord(corner1_lat=lat_ne, corner1_lon=lon_ne,
                                                corner2_lat=lat_sw, corner2_lon=lon_sw)
+        if is_escwa:
+            data_fetcher.register_where_escwa()
 
         data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_dates(date_start, date_end)
@@ -320,7 +328,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                   lat_sw: float = latitude,
                   lon_sw: float = longitude,
                   lat: float = latitude,
-                  lon: float = longitude):
+                  lon: float = longitude,
+                  is_escwa: bool = isEscwa):
 
     cur_run = vRuns.get_run(run.value)
     cur_run.fetch_model_tree()
@@ -349,6 +358,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
         data_fetcher.register_where_bbox_pg(pg_ne, pg_sw)
         data_fetcher.register_where_bbox_coord(corner1_lat=lat_ne, corner1_lon=lon_ne,
                                                corner2_lat=lat_sw, corner2_lon=lon_sw)
+        if is_escwa:
+            data_fetcher.register_where_escwa()
 
         data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_dates(date_start, date_end)
@@ -372,8 +383,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
 
 
 if __name__ == "__main__":
-    print ("Run this via uvicorn")
+    # print ("Run this via uvicorn")
     # To debug:
-    # uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
 

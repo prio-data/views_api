@@ -226,6 +226,12 @@ class PageFetcher:
                 if len(countries)>0:
                     self.register_where_countryid(countries)
 
+    def register_where_escwa(self):
+        self.where_queries = []
+        iso_list = ['BHR','DZA','EGY','IRQ','JOR','KWT','LBN','LBY',
+                    'MAR','MRT','OMN','PAL','QAT','SAU','SDN','SOM','SYR','TUN','YEM']
+        self.register_where_iso(iso=iso_list)
+
     def register_where_bbox_pg(self, corner1, corner2):
         if corner1 is not None and corner2 is not None:
             corner1 = Priogrid(corner1)
