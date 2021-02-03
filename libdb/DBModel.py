@@ -228,7 +228,7 @@ class PageFetcher:
 
     def register_where_escwa(self):
         self.where_queries = []
-        iso_list = ['BHR','DZA','EGY','IRQ','JOR','KWT','LBN','LBY',
+        iso_list = ['BHR','DZA','EGY','IRQ','JOR','KWT','LBN','LBY','DJI','COM',
                     'MAR','MRT','OMN','PAL','QAT','SAU','SDN','SOM','SYR','TUN','YEM']
         self.register_where_iso(iso=iso_list)
 
