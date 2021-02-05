@@ -1,4 +1,6 @@
 from fastapi import FastAPI, APIRouter, Query
+from fastapi.responses import StreamingResponse
+
 from starlette.requests import Request
 from enum import Enum
 from typing import Optional, List
@@ -7,7 +9,28 @@ from libdb.ViEWSModel import ModelTV, ModelLOA, simpleFactory
 from libdb.APIConfig import Paging
 from copy import deepcopy
 import uvicorn
+import io
+import csv
 
+def makecsv(datastream, page=1, total_pages=0):
+    stream = io.StringIO()
+    w = csv.writer(stream)
+
+    try:
+        length = len(datastream)
+    except:
+        length = 0
+    if length == 0:
+        w.writerow([])
+    else:
+        w.writerow(datastream[0].keys())
+        w.writerows(datastream)
+
+    response = StreamingResponse(iter([stream.getvalue()]),
+                                 media_type="text/csv")
+    response.headers["Content-Disposition"] = f"attachment; filename=forecasts_p{page}.csv"
+    response.headers["X-Total-Pages"] = f"{total_pages}"
+    return response
 
 app = FastAPI()
 vRuns = DBModel.Runs()
@@ -42,6 +65,10 @@ longitude = Query(default=None, ge=-180, le=180,
 isDataQuery = Query(default=True, title="Return Model Tree metadata + Model data or just metadata",
                     description="True (the default) will return both the Model Tree Metadata for the given path "
                                 "as well as the data itself. False will only retrieve the Model Tree Metadata")
+isCsv = Query(default=False, title="Return CSV instead of JSON.",
+                description="If True, return a CSV file. The file is called forecast_p{$PAGE_NUMBER}. "
+                            "No metadata is returned, except the total number of pages."
+                            "This is returned as the X-Total-Pages HTTP header")
 isEscwa = Query(default=False, title="Return only ESCWA countries.",
                 description="If True, clears all other geographic filters and returns data for ESCWA countries")
 isStepsQuery = Query(default=False, title="Include stepwise Predictions",
@@ -192,7 +219,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, request: Request,
                   lon_sw: float = longitude,
                   lat: float = latitude,
                   lon: float = longitude,
-                  is_escwa: bool = isEscwa):
+                  is_escwa: bool = isEscwa,
+                  is_csv: bool = isCsv):
     #Escwa
     cur_run = vRuns.get_run(run.value)
     cur_run.fetch_model_tree()
@@ -221,8 +249,12 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, request: Request,
         data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_dates(date_start, date_end)
 
-
+        dataset = data_fetcher.fetch(page=page)
         row_count, page_count = data_fetcher.total_counts()
+
+        if is_csv:
+            return makecsv(dataset, page, page_count)
+
         next_url, prev_url  = __next_urls(request, page_count=page_count)
         return {'next_page': next_url,
                 'prev_page': prev_url,
@@ -231,7 +263,7 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, request: Request,
                 'row_count': row_count,
                 'page_count': page_count,
                 'page_cur': page,
-                'data': data_fetcher.fetch(page=page)}
+                'data': dataset}
     else:
         return {'next_page': '',
                 'prev_page': '',
@@ -259,7 +291,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                   lon_sw: float = longitude,
                   lat: float = latitude,
                   lon: float = longitude,
-                  is_escwa: bool = isEscwa):
+                  is_escwa: bool = isEscwa,
+                  is_csv: bool = isCsv):
 
 
     cur_run = vRuns.get_run(run.value)
@@ -290,8 +323,12 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
         data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_dates(date_start, date_end)
 
-
+        dataset = data_fetcher.fetch(page=page)
         row_count, page_count = data_fetcher.total_counts()
+
+        if is_csv:
+            return makecsv(dataset, page, page_count)
+
         next_url, prev_url  = __next_urls(request, page_count=page_count)
         return {'next_page': next_url,
                 'prev_page': prev_url,
@@ -300,7 +337,7 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                 'row_count': row_count,
                 'page_count': page_count,
                 'page_cur': page,
-                'data': data_fetcher.fetch(page=page)}
+                'data': dataset}
     else:
         return {'next_page': '',
                 'prev_page': '',
@@ -329,7 +366,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                   lon_sw: float = longitude,
                   lat: float = latitude,
                   lon: float = longitude,
-                  is_escwa: bool = isEscwa):
+                  is_escwa: bool = isEscwa,
+                  is_csv: bool = isCsv):
 
     cur_run = vRuns.get_run(run.value)
     cur_run.fetch_model_tree()
@@ -364,9 +402,14 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
         data_fetcher.register_where_monthid(month)
         data_fetcher.register_where_dates(date_start, date_end)
 
-
         row_count, page_count = data_fetcher.total_counts()
         next_url, prev_url  = __next_urls(request, page_count=page_count)
+        #exit(1)
+        #print(data_fetcher.fetch(page=page))
+        dataset = data_fetcher.fetch(page=page)
+        if is_csv:
+            return makecsv(dataset, page, page_count)
+
         return {'next_page': next_url,
                 'prev_page': prev_url,
                 'model_tree': model_tree,
@@ -374,7 +417,7 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                 'row_count': row_count,
                 'page_count': page_count,
                 'page_cur': page,
-                'data': data_fetcher.fetch(page=page)}
+                'data': dataset}
     else:
         return {'next_page': '',
                 'prev_page': '',
