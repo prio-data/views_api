@@ -41,10 +41,12 @@ AND parent = :parent AND loa ilike :loa AND type_of_violence ilike :tv
     def __fetch_model_tree(self):
         self.model_tree = ModelLOA(cm=ModelTV(sb=self.__sugar_dict(self.__model_iterate(loa='cm', tv='sb')),
                                               ns=self.__sugar_dict(self.__model_iterate(loa='cm', tv='ns')),
-                                              os=self.__sugar_dict(self.__model_iterate(loa='cm', tv='os'))),
+                                              os=self.__sugar_dict(self.__model_iterate(loa='cm', tv='os')),
+                                              px=self.__sugar_dict(self.__model_iterate(loa='cm', tv='px'))),
                                    pgm=ModelTV(sb=self.__sugar_dict(self.__model_iterate(loa='pgm', tv='sb')),
                                                ns=self.__sugar_dict(self.__model_iterate(loa='pgm', tv='ns')),
-                                               os=self.__sugar_dict(self.__model_iterate(loa='pgm', tv='os'))
+                                               os=self.__sugar_dict(self.__model_iterate(loa='pgm', tv='os')),
+                                               px=self.__sugar_dict(self.__model_iterate(loa='pgm', tv='px'))
                                                ))
 
     def fetch_model_tree(self):
@@ -151,12 +153,14 @@ class PageFetcher:
         return self.row_count, self.page_count
 
     def __is_dynasim(self, i):
+        print("DYNASIM :::", i)
         query = text("SELECT dynasim::BOOLEAN FROM structure.model WHERE node=:i")
         with self.engine.connect() as conn:
             return conn.execute(query, i=i).fetchone()[0]
 
     def __frederick_labels(self):
         columns = []
+        #print(1)
         columns += ['sc_' + i for i in self.model_list if not self.__is_dynasim(i)]
         columns += [i for i in self.model_list if self.__is_dynasim(i)]
         return columns

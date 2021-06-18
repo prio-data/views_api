@@ -38,7 +38,7 @@ vRuns = DBModel.Runs()
 AllModels = Enum('AllModels', {i: i for i in vRuns.dirty_full_model_list()})
 AvailableRuns = Enum('AvailableRuns', {i: i for i in vRuns.list_runs()})
 AvailableLoa = Enum('AvailableLoa', {'pgm':'pgm', 'cm':'cm'})
-AvailableTypeOfViolence = Enum('AvailableTV', {'sb': 'sb', 'ns': 'ns', 'os': 'os'})
+AvailableTypeOfViolence = Enum('AvailableTV', {'sb': 'sb', 'ns': 'ns', 'os': 'os', 'px': 'px'})
 
 priogridQuery = Query(default=None, ge=1, le=259200,
                       title="PrioGRID",
@@ -99,6 +99,8 @@ def __subset_helper(cur_run, loa=None, tv=None, model = None):
         subset = subset.ns
     if tv == 'os':
         subset = subset.os
+    if tv == 'px':
+        subset = subset.px
 
     if model is not None:
         subset = subset
@@ -300,7 +302,6 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
 
     subset = __subset_helper(cur_run, loa=loa.value, tv=tv.value)
     simple_subset = simpleFactory(subset)
-
 
     if data:
         data_fetcher = DBModel.PageFetcher(run=cur_run,

@@ -11,6 +11,7 @@ class ModelTV:
     sb: list
     ns: list
     os: list
+    px: list
 
     @staticmethod
     def __simplify(x):
@@ -23,7 +24,8 @@ class ModelTV:
         self.sb = self.__simplify(self.sb)
         self.ns = self.__simplify(self.ns)
         self.os = self.__simplify(self.os)
-        self.simple = sorted(list(set(self.sb + self.ns + self.os)))
+        self.px = self.__simplify(self.px)
+        self.simple = sorted(list(set(self.sb + self.ns + self.os + self.px)))
 
 
 
