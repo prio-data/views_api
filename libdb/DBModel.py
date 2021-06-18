@@ -13,6 +13,15 @@ class Run:
         self.id = id.lower()
         self.model_tree = None
 
+    @property
+    def codebook_file(self):
+        query = text(f"SELECT DISTINCT codebook FROM structure.generation WHERE id IN "
+                     f"(SELECT DISTINCT generation_id FROM structure.register WHERE run ilike :id)")
+        with self.engine.connect() as conn:
+            #print(query)
+            codebook = conn.execute(query, id=self.id).fetchone()
+            return codebook['codebook']
+
     def __model_leaf(self, parent='', loa='cm', tv='sb'):
         query = text(f"""
 SELECT node FROM structure.model
@@ -53,7 +62,6 @@ AND parent = :parent AND loa ilike :loa AND type_of_violence ilike :tv
         if self.model_tree is None:
             self.__fetch_model_tree()
         return self.model_tree
-
 
 class Runs:
     def __init__(self, url=db_url):

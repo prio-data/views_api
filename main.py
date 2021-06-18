@@ -8,8 +8,10 @@ from libdb import DBModel
 from libdb.ViEWSModel import ModelTV, ModelLOA, simpleFactory
 from libdb.APIConfig import Paging
 from copy import deepcopy
+from libdb.config import codebook_location
 import uvicorn
 import io
+import json
 import csv
 
 def makecsv(datastream, page=1, total_pages=0):
@@ -199,6 +201,25 @@ async def get_run(run: AvailableRuns):
             'data': None,
             'msg': 'To get data, select at least a level of analysis (LOA)'}
 
+
+@app.get("/{run}/codebook")
+async def get_metadata(run: AvailableRuns):
+    cur_run = vRuns.get_run(run.value)
+
+    codebook = cur_run.codebook_file
+
+    if codebook is None or codebook.strip() == '':
+        return {'codebook': None}
+    else:
+        codebook = codebook.strip('/. \t').replace('/','')
+        codebook = codebook_location.strip('/\. \t') + '/' + codebook
+        try :
+            with open(codebook, 'rb') as f:
+                codebook_data = json.load(f)
+                return codebook_data
+        except Exception as e:
+            print (e)
+            return {'codebook': 'Error'}
 
 @app.get("/{run}/{loa}")
 async def get_run(run: AvailableRuns, loa: AvailableLoa, request: Request,

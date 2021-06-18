@@ -1,0 +1,156 @@
+{
+	"cm": [
+{
+	"id": "main",
+	"name": "The country-level ensemble",
+	"description": "The forecasting model ensemble used to produce the monthly ViEWS forecasts at the country-month level of analysis. Informed by all constituent models (sub-models) currently trained to predict conflict at the country-month level of analysis."
+},
+{
+	"id": "cflong",
+	"name": "The UCDP conflict history model",
+	"description": "Features capturing different aspects of conflict history per country, as defined and sourced from the UCDP, including time since the last fatal event, which t"
+},
+{
+	"id": "onset_24_25_all",
+	"name": "The onset model",
+	"description": "A model trained to predict onset of conflict, as recorded by the UCDP. Onset is defined as the first month that a country reaches or exceeds 25 battle-related deaths (BRDs) over a rolling 24-month window. The model captures all features informing the country-level models."
+},
+{
+	"id": "cdummies",
+	"name": "The country dummy model",
+	"description": "A model consisting of dummy variables based on a random forest variant of a random effects model (a type of regression model that assumes that the intercepts and/or some of the explanatory variables are random)."
+},
+{
+	"id": "neibhist",
+	"name": "The neighbour history model",
+	"description": "A model capturing the conflict history in neighbouring countries using a subset of the features from the cflong model. Sourced from UCDP. "
+},
+{
+	"id": "ds_jpr2020_dummy",
+	"name": "The dummy dynamic simulation model",
+	"description": "Conflict history model that makes use of dynamic simulations to generate predictions. Trained on the incidence of conflict with at least one battle-related death (BRD) in a given month from state-based, non-state, and one-sided violence together. Sourced from UCDP."
+},
+{
+	"id": "ds_jpr2020_greq_25",
+	"name": "The 25 BRDs dynamic simulation model",
+	"description": "Conflict history model that makes use of dynamic simulations to generate predictions. Trained on the incidence of conflict with at least 25 battle-related deaths (BRDs) in a given month from state-based, non-state, and one-sided violence together. Sourced from UCDP."
+},
+{
+	"id": "acled_violence",
+	"name": "The ACLED violence model",
+	"description": "Variables capturing the recent history of political violence as defined by the UCDP, sourced from ACLED."
+},
+{
+	"id": "acled_protest",
+	"name": "The ACLED protest model",
+	"description": "Variables capturing the recent history of protests in each country, sourced from the ACLED dataset."
+},
+{
+	"id": "icgcw",
+	"name": "The ICG Crisis Watch model",
+	"description": "A model informed by monthly warnings issued by the International Crisis Group’s Crisis Watch."
+},
+{
+	"id": "reign_coups",
+	"name": "The REIGN coups model",
+	"description": "A governance model predominantly informed by the predicted probability of coups from CoupCast (REIGN)."
+},
+{
+	"id": "reign_global",
+	"name": "The global REIGN model",
+	"description": "A global governance model informed by features derived from the monthly Rulers, Election, and Irregular Governance (REIGN) dataset, e.g. information on elections, leader traits, political regime tenures, and coups."
+},
+{
+	"id": "vdem_global",
+	"name": "The political institutions model",
+	"description": "A governance model informed by the mid-level indices from the Varieties of Democracy (V-Dem) dataset describing the political institutions of a country."
+},
+{
+	"id": "demog",
+	"name": "The demography model",
+	"description": "A development model capturing data on the Shared Socioeconomic Pathways (SSP) that represent socio-economic scenarios consistent with different climate mitigation and adaptation challenges. Data sourced from the IIASA dataset."
+},
+{
+	"id": "wdi_global",
+	"name": "The World Development Indicators (WDI) model",
+	"description": "A development model broadly capturing the level of development by country, including the quality of infrastructure, economic growth and the amount of national debt, education and gender equality, health care and provision, agricultural dependence and migration flows. Sourced from the World Development Indicators."
+},
+{
+	"id": "reign_drought",
+	"name": "The REIGN drought model",
+	"description": "A climate model informed by the precipitation variable built into the REIGN dataset."
+},
+{
+	"id": "all_global",
+	"name": "The all-encompassing global model",
+	"description": "A global model informed by all features that are fed into the country-level models, capturing interactions and non-linearities between the different predictors."
+}
+],
+	"pgm": [
+{
+	"id": "main",
+	"name": "The sub-national-level ensemble",
+	"description": "The forecasting model ensemble used to produce the monthly ViEWS forecasts at the PRIO-GRID-month level of analysis. Informed by all constituent models (sub-models) currently trained to predict conflict at the PRIO-GRID-month level of analysis."
+},
+{
+	"id": "hist_legacy",
+	"name": "The conflict history model",
+	"description": "A model tracing the conflict history of each geographic grid-cell and its adjacent locations, as incidences of conflict are more likely in locations that have experience conflict in the past."
+},
+{
+	"id": "sptime",
+	"name": "The space-time model",
+	"description": "A conflict history model capturing both time and space proximity to conflict."
+},
+{
+	"id": "onset24_1_all",
+	"name": "The 1 BRD onset model",
+	"description": "A model trained to predict onset of conflict with at least one battle-related death (BRD) in a given geographic location. Onset is defined as the first time a specific grid cell, or its neighbors, reaches the 1-BRD threshold over a 24-month sliding window. The model uses the feature set from the all_themes model, coupled with fatality estimates and conflict event counts related to the spacetime model, and a subset of data from the Standardized Precipitation Evapotranspiration Index (SPEI), a water balance index computed from both precipitation and temperature data."
+},
+{
+	"id": "onset24_100_all",
+	"name": "The 100 BRDs onset model",
+	"description": "A model trained to predict onset of conflict with at least 100 battle-related deaths (BRDs) in a given geographic location. Onset is defined as the first time a specific grid cell, or its neighbors, reaches one the 100-BRDs threshold over a 24-month sliding window. The model uses the feature set from the all_themes model, coupled with fatality estimates and conflict event counts related to the spacetime model, and a subset of data from the Standardized Precipitation Evapotranspiration Index (SPEI), a water balance index computed from both precipitation and temperature data."
+},
+{
+	"id": "all_gxgb",
+	"name": "The XGBoost model",
+	"description": "A Gradient Boosting Machine (GBM) model using the feature set from the all_themes model, coupled with fatality estimates and conflict event counts related to the spacetime model, and a subset of data from the Standardized Precipitation Evapotranspiration Index (SPEI), a water balance index computed from both precipitation and temperature data."
+},
+{
+	"id": "ds_jpr2020_dummy",
+	"name": "The dummy dynamic simulation model",
+	"description": "A conflict history model that makes use of dynamic simulations to generate predictions. Trained on the incidence of conflict with at least one battle-related death (BRD) in a given month from state-based, non-state, and one-sided violence together. Sourced from UCDP."
+},
+{
+	"id": "ds_jpr2020_greq_25",
+	"name": "The 25 BRDs dynamic simulation model",
+	"description": "A conflict history model that makes use of dynamic simulations to generate predictions. Trained on the incidence of conflict with at least 25 battle-related deaths (BRDs) in a given month from state-based, non-state, and one-sided violence together. Sourced from UCDP."
+},
+{
+	"id": "pgd_natural",
+	"name": "The natural geography model",
+	"description": "A natural geography model capturing the spatial distance to diamonds and petroleum deposits as well as data on the main type of land: cultivated areas, barren, forest, mountains, svanna, shrub, pasture and urban areas."
+},
+{
+	"id": "pgd_social",
+	"name": "The social geography model",
+	"description": "A social geography model capturing a set of human geography features that may affect conflict, such as the distance to the capital, the nearest urban center, and the national border. It also captures grid-level development variables such as local population size, GDP, Infant Mortality Rate and and the share of excluded ethnic groups in each location."
+},
+{
+	"id": "allthemes",
+	"name": "The all themes model",
+	"description": "A broad model informed by outcome-specific features from all sub-national models, capturing interactions between different features."
+},
+{
+	"id": "crosslevel",
+	"name": "The cross-level model",
+	"description": "A cross-level model that allows the country- and sub-national levels of analysis to inform one another."
+},
+{
+	"id": "spei_full",
+	"name": "The water availability model",
+	"description": "A drought or water availability model informed by the Standardized Precipitation Evapotranspiration Index (SPEI), a water balance index computed from both precipitation and temperature data. Also includes a subset model linked to features from the conflict history model."
+}
+]
+}
