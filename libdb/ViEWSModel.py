@@ -35,7 +35,7 @@ class ModelLOA:
     pgm: ModelTV
 
     def simplify(self):
-        print("Simple HEAD")
+        #print("Simple HEAD")
         self.simple = []
         try:
             self.cm.simplify()

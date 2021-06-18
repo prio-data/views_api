@@ -153,7 +153,7 @@ class PageFetcher:
         return self.row_count, self.page_count
 
     def __is_dynasim(self, i):
-        print("DYNASIM :::", i)
+        #print("DYNASIM :::", i)
         query = text("SELECT dynasim::BOOLEAN FROM structure.model WHERE node=:i")
         with self.engine.connect() as conn:
             return conn.execute(query, i=i).fetchone()[0]
