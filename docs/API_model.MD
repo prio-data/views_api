@@ -21,7 +21,7 @@ where the following address is the
 
 - `/{loa}` : The level of analysis (`cm` for country-month, `pgm` for priogrid-month)
 
-- `/{type_of_violence}` : The type of violence for which predictions (`sb`, `ns`, `os`).
+- `/{type_of_violence}` : The type of violence for which you want forecasts (`sb`, `ns`, `os`). Some API nodes contain **predictors**, i.e. features used to make forecasts. You obtain those by using the (`px`) node at this level.
 
 - `/{model}` : The model name itself.
 
@@ -111,6 +111,12 @@ http://54.75.57.44:8000/d_2021_02_01/cm/ns?lat=20&lon=15&month=501 : Fetch all N
 http://54.75.57.44:8000/d_2021_02_01/cm/sb/cm_sb_main?lat_ne=25&lon_ne=30&lat_sw=30&lon_sw=10&month=500 : Fetch all state-based country-level predictions for the main ensemble model for those countries located in a square bounded by 25N30E and 10S10E.
 
 http://54.75.57.44:8000/d_2021_02_01/pgm?iso=PAL&date_start=2010-01-01&date_end=2030-01-01: Fetch all PrioGrid based predictions for Palestine between 2020-01-01 and 2030-01-01.
+
+### Metadata
+
+All models expose some human readable metadata under the `codebook/` right below the model path:
+
+http://54.75.57.44:8000/escwa_2021_05_01/codebook
 
 ### Further Reading:
 
