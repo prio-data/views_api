@@ -15,7 +15,7 @@ Works, including basic filtering, but code is throwaway quality, as it is built 
 
 ### Paths:
 - LOA (required)
-- sb/ns/os (optional)
+- sb/ns/os/px (optional)
 - individual model (optional)
 
 Due to limitations in FastAPI, fuzzy paths (eg `sb,ns`) will not be possible at this time. Go one level above or run the API twice
