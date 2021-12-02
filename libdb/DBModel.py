@@ -13,6 +13,21 @@ class Run:
         self.id = id.lower()
         self.model_tree = None
 
+
+    def __get_date_range(self, end=True):
+        date_col = 'end_date' if end else 'start_date'
+        query = text(f"SELECT DISTINCT {date_col} FROM structure.register WHERE run ilike :id")
+        with self.engine.connect() as conn:
+            return conn.execute(query, id=self.id).fetchone()[date_col]
+
+    @property
+    def start_date(self):
+        return self.__get_date_range(False)
+
+    @property
+    def end_date(self):
+        return self.__get_date_range(True)
+
     @property
     def codebook_file(self):
         query = text(f"SELECT DISTINCT codebook FROM structure.generation WHERE id IN "
@@ -318,6 +333,7 @@ class PageFetcher:
         ).select_from(self.data_table)
         query = query.limit(self.limit)
         query = query.offset(offset)
+        query = query.order_by(text(f'{self.time_id}, {self.row_id}'))
 
         if len(self.where_queries)>0:
             for where_query in self.where_queries:

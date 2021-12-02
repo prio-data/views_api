@@ -198,6 +198,8 @@ async def get_run(run: AvailableRuns):
 
     return {'model_tree': cur_run.model_tree,
             'models': simple_subset.simple,
+            'start_date': cur_run.start_date,
+            'end_date': cur_run.end_date,
             'data': None,
             'msg': 'To get data, select at least a level of analysis (LOA)'}
 
@@ -286,6 +288,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, request: Request,
                 'row_count': row_count,
                 'page_count': page_count,
                 'page_cur': page,
+                'start_date': cur_run.start_date,
+                'end_date': cur_run.end_date,
                 'data': dataset}
     else:
         return {'next_page': '',
@@ -359,6 +363,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                 'row_count': row_count,
                 'page_count': page_count,
                 'page_cur': page,
+                'start_date': cur_run.start_date,
+                'end_date': cur_run.end_date,
                 'data': dataset}
     else:
         return {'next_page': '',
@@ -439,6 +445,8 @@ async def get_run(run: AvailableRuns, loa: AvailableLoa, tv: AvailableTypeOfViol
                 'row_count': row_count,
                 'page_count': page_count,
                 'page_cur': page,
+                'start_date': cur_run.start_date,
+                'end_date': cur_run.end_date,
                 'data': dataset}
     else:
         return {'next_page': '',
