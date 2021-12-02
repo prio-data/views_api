@@ -189,7 +189,7 @@ class PageFetcher:
         return columns
 
     @staticmethod
-    def __sugar_precision(*args, precision="NUMERIC(10,4)"):
+    def __sugar_precision(*args, precision="NUMERIC(14,4)"):
         columns = []
         for col_set in args:
             columns += [i + '::' + precision for i in col_set]
