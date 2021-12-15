@@ -39,7 +39,7 @@ will return the following things:
 
 - Paging information, containing the total number of pages (`page_count`), rows (`row_count`), pages (`page_count`), as well as the current page (`page_cur`) you are exploring.
 
-- `model_tree` : A model tree describing the relations of the models you have selected. Models can be ensembles of other models, and, similarly, can be components of ensembles, arbitrarily nested. This allows you to explore ensembles and components with relative ease (for examle, cm_sb_main is composed of).
+- `model_tree` : A model tree describing the relations of the models you have selected. Models can be ensembles of other models, and, similarly, can be components of ensembles, arbitrarily nested. This allows you to explore ensembles and components with relative ease (for examle, cm_sb_main is composed of a set of models as a parent).
 
 - `models` : A model set (presented as an array) - a list of all the models that will be retrieved by the API call.
 
