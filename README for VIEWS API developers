@@ -1,0 +1,41 @@
+# README for VIEWS API developers
+
+A ViEWS2-based API for retrieving predictions, based on ESCWA-discussed specifications.
+
+Works, including basic filtering, but code is throwaway quality, as it is built around the flat prediction files produced by ViEWS2. It's a terrible mess rightnow.
+
+## Supported ViEWS facilities:
+
+- Multiple ViEWS _runs_ simultaneously. Runs can be based on different ViEWS model definitions. Register runs using `escwatransfer`.
+- Hierarchically nested ViEWS models (e.g. ensembles based on smaller ensembles based on components). Arbitrary depth can be specified, limited only by Python's recurssion. The tree-based metadata is delivered
+- Delivery of both models (`sc`) and prediction `steps` for the models that have `steps`, if so desired.
+- `PG` and `C` levels of analysis, with all categories of violence.
+
+## Supported paths and filters:
+
+### Paths:
+- LOA (required)
+- sb/ns/os/px (optional)
+- Individual model (optional)
+
+Due to limitations in FastAPI, fuzzy paths (eg `sb,ns`) will not be possible at this time. Go one level above or run the API twice
+
+### Filters
+- Space (priogrid, countries (lists allowed, as well as GWNO et., BoundingBox, ISO))
+- Time (month, ISO dates)
+- **TODO** : stored filtersets (`escwa`, `africa` etc.)
+
+**Won't do** : Due to FastAPI limitations, `country=AFG,ALG` type filters are not available. You will have to work with `country=AFG&country=ALG` for multiple (Array-based) filters.
+
+### Paging
+- Works. Implemented next_url and prev_url URL scheme for user convenience.
+
+### Security
+- No SQL injection should be possible (dual layer of abstraction via FastAPI and SQLAlchemy) but no ORM (so no guarantees)
+- **TODO** : API key (maybe?)
+
+## Requires :
+- A Postgres Database (edit `libdb/config.py`).
+- A ViEWS2 or ViEWS3 `model hierarchy`, manually built in the database in the `structure`. Does note include a dependency compiler from `yaml`or from Frederick Hoyel's model dataclasses. Ideally, start with a simple structure dump (see the private [escwatransfer](https://github.com/UppsalaConflictDataProgram/escwatransfer) repository).
+- `escwatransfer` to transfer data from `views2` (`janus` or `hermes`) into ESCWA. Access to `views2` or `views2 dumps` is required for transferring data.
+- **TODO** : Dockerize this whole mess and write an INSTALL file.
