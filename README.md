@@ -63,7 +63,7 @@ All filtering works at all levels.
 
 All filters are treated as `AND`, with the exception of repeating the same filter key, which, where allowed (see below), will be treated as `OR`. This conforms to the OpenAPI standard. All filters are designed to 'fail-safe', i.e. if a filter is wrongly specified or does not exist, it is simply ignored.
 
-**Spatial filters:**
+**1. Spatial filters:**
 
   - `iso`: An ISO country code in 3-letter format (e.g. `JPN`). A list is allowed by repeating the key, which will then be treated as `OR` (e.g. `iso=JPN&iso=CHN` will retrieve data for both China and Japan).
 
