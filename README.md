@@ -23,7 +23,7 @@ There are multiple ways to fetch and download data from the VIEWS API.
 
 - **Option 2.** Specify an API call using the instructions in the [wiki section](https://github.com/prio-data/views_api/wiki/Making-an-API-call) and use our [helper notebook](https://github.com/prio-data/views_api/blob/master/DataExploration/Fetch%20and%20download%20data%20from%20the%20VIEWS%20API.ipynb) to fetch and download the selected data as a csv file.  
 
-- **Option 3.** Use our [interactive data exploration tool](https://api.viewsforecasting.org/docs) to specify your API call and generate a URL that automatically downloads the data of interest as a csv file. 
+- **Option 3.** Use our [self-documenting and interactive query manipulation tool](https://api.viewsforecasting.org/docs) to specify your API call and generate a URL that automatically downloads the data of interest as a csv file. 
 
 ## Questions?
 
