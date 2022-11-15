@@ -4,12 +4,26 @@ This repository documents the VIEWS API. It is written in `Python/FastAPI` and a
 
 The VIEWS API is available in _alpha_ testing mode at [https://api.viewsforecasting.org](https://api.viewsforecasting.org).
 
-For assistance in exploring the VIEWS data available via the API, please see the user guide below, visit the self-documenting and exploratory interface at [https://api.viewsforecasting.org/docs](https://api.viewsforecasting.org/docs), or use the example resources in the `Tools` folder.
+## Fetching and downloading data from the API
+
+### Step 1: Identify your dataset of interest
+
+Please consult https://github.com/prio-data/views_api/wiki/Available-datasets to learn more about the available datasets. 
+
+### Step 2: Choose access method
+
+There are multiple ways to fetch and download data from the VIEWS API. 
+
+- **Option 1.** Make an API call using the instructions below. This will load the chosen dataset directly in your browser for further action. The URL can also be used to download the data as a csv file using Option 2. 
+
+- **Option 2.** Specify an API call using the instructions below and use our [helper notebook](https://github.com/prio-data/views_api/blob/master/DataExploration/Fetch%20and%20download%20data%20from%20the%20VIEWS%20API.ipynb) to fetch and download the selected data as a csv file.  
+
+- **Option 3.** Use our [interactive data exploration tool](https://api.viewsforecasting.org/docs) to specify your API call and generate a URL that automatically downloads the data of interest as a csv file. 
 
 **Questions?** Please contact [views@pcr.uu.se](mailto:views@pcr.uu.se).
 
 
-## Making an API call
+## How to make an API call
 
 The general form of the api call is:
 
@@ -119,7 +133,7 @@ https://api.viewsforecasting.org/fatalities001_2022_07_t01/cm/sb/sc_cm_sb_main?l
 
 https://api.viewsforecasting.org/fatalities001_2022_07_t01/pgm?iso=PAL&date_start=2010-01-01&date_end=2030-01-01: Fetch all PRIO-GRID-month predictions for Palestine between 2020-01-01 and 2030-01-01.
 
-### Metadata
+### Metadata/codebook
 
 All datasets include some human readable metadata under the `codebook/` right below the model path (e.g. `https://api.viewsforecasting.org/fatalities001_2022_07_t01/codebook`).
 
