@@ -12,7 +12,7 @@ To learn more about the VIEWS API and its content, please visit the [wiki pages]
 
 ### Step 1: Identify your dataset of interest
 
-Please consult https://github.com/prio-data/views_api/wiki/Available-datasets to learn more about the available datasets, and the corresponding [codebooks](https://github.com/prio-data/views_api/wiki/Codebooks) to browse the variables they contain. 
+Please consult the [list of available datasets](https://github.com/prio-data/views_api/wiki/Available-datasets) in the wiki section to learn more about the available datasets, and the corresponding [codebooks](https://github.com/prio-data/views_api/wiki/Codebooks) to browse the variables they contain. 
 
 
 ### Step 2: Choose access method
