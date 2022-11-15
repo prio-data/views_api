@@ -13,7 +13,7 @@ For assistance in exploring the VIEWS data available via the API, please see the
 
 The general form of the api call is:
 
-`https://api.viewsforecasting.org/{run}/{loa}/[{type_of_violence}/[{model}]]?filters`, where
+`https://api.viewsforecasting.org/{run}/{loa}/[{type_of_violence}/[{variable}]]?filters`, where
 
 - `/{run}`: The `run_id` for fetching forecasts. There should be a `current` run which defaults to the most recent data release. You may also choose `run_id` in the conventional format `{model name}{model version}_{production run}_{try sequence}`, where
 
@@ -29,7 +29,7 @@ The general form of the api call is:
 
 - `/{type_of_violence}`: The type of violence for which you want forecasts (state-based conflict (`sb`), non-state conflict (`ns`), or one-sided violence (`os`); see our [definitions](https://viewsforecasting.org/methodology/definitions) for more information). Some API nodes contain data from **predictors**, i.e. individual features informing the forecasts. They can be obtained by using the (`px`) node at this level.
 
-- `/{model}`: The model or variable of interest.
+- `/{variable}`: The model or variable of interest. See the codebook for each dataset at https://api.viewsforecasting.org/{run}/codebook for a list of available variables. 
 
 - `/{partition}`: The partition of data to retrieve (`predict`, `eval` or `calib`), see the [data partitions](https://viewsforecasting.org/methodology/definitions description on our website for more information.
 
