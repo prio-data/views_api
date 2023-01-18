@@ -184,12 +184,13 @@ def vid2date(i):
     return year+'/'+month
 
 #note the zip function occured earlier
-standard_scale = [np.log1p(0),np.log1p(3),np.log1p(10), np.log1p(30), np.log1p(100),  np.log1p(300)]#, np.log1p(1000), np.log1p(3000),  np.log1p(10000)]
-standard_scale_labels = ['0', '3','10', '30','100', '300']#, '1000', '3000', '10000']
+# standard_scale = [np.log1p(0),np.log1p(3),np.log1p(10), np.log1p(30), np.log1p(100),  np.log1p(300)]#, np.log1p(1000), np.log1p(3000),  np.log1p(10000)]
 
-small_scale=[np.log1p(0),np.log1p(3),np.log1p(10), np.log1p(30), np.log1p(100),  np.log1p(300)]#, np.log1p(1000)]
+# standard_scale_labels = ['0', '3','10', '30','100', '300']#, '1000', '3000', '10000']
+
+# small_scale=[np.log1p(0),np.log1p(3),np.log1p(10), np.log1p(30), np.log1p(100),  np.log1p(300)]#, np.log1p(1000)]
 
 
-small_scale_labels = ['0', '3','10', '30','100', '300']#, '1000']
+# small_scale_labels = ['0', '3','10', '30','100', '300']#, '1000']
 
-small_scale_nolabels = ['', '','', '','', '', '']
+# small_scale_nolabels = ['', '','', '','', '', '']
