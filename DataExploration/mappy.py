@@ -5,10 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import contextily as ctx
 import sqlalchemy as sa
-#from ingester3.config import source_db_path
-#from ingester3.Country import Country
-#from ingester3.extensions import *
-#from ingester3.ViewsMonth import ViewsMonth
 
 from views_dataviz.map import mapper, utils
 from views_dataviz import color
