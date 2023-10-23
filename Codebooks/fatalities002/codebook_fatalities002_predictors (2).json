@@ -1,0 +1,742 @@
+{ 
+"ucdp_ged_sb_best_sum": {
+    "name": "(UCDP) Observed fatalities, state-based conflict",
+    "description": "The best (most likely) estimate of the total number of battle-related deaths (BRDs), disaggregated for state-based conflict per the Uppsala Conflict Data Program (UCDP) [definitions](https://www.pcr.uu.se/research/ucdp/definitions/) in the UCDP Georeferenced Events Dataset (UCDP GED) and the UCDP Candidate Events Dataset (UCDP Candidate).",
+    "unit": 
+        {
+        "unit_name": "Fatalities", 
+        "unit_type": "Int", 
+        "unit_range": "0-unlimited" 
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1990-01",
+        "end_date": "2023-08"
+        }, 
+    "update": 
+        {
+        "frequency": "Monthly", 
+        "date_of_access": "2023-09"
+        },
+    "viewser_column": "ged_sb_best_sum_nokgi", 
+    "transformations": "'Nokgi'", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "Uppsala Conflict Data Program (UCDP)", 
+        "inst_URL": "https://ucdp.uu.se/", 
+        "var_URL": "N/A",
+        "var_ID": "best", 
+        "var_start_date": "1990-01",
+        "var_end_date": "2023-08",
+        "var_periodicity": "Monthly",
+        "dataset": "UCDP Georeferenced Events Dataset (GED) Global version 23.1; UCDP Candidate Events Dataset (UCDP Candidate) version 23.0.1 through version 23.0.6", 
+        "citation": "Davies et al. 2022. Organized violence 1989-2021 and drone warfare. Journal of Peace Research 59(4); Sundberg & Melander. 2013. Introducing the UCDP Georeferenced Event Dataset. Journal of Peace Research 50(4).", 
+        "license": "Please consult data provider."
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Observed fatalities",
+        "viz_main_colormap": "rainbow",
+        "viz_main_transformation": "ln",
+        "viz_main_dictionary_cm": "dictionary_stand_1p_10k",
+        "viz_main_dictionary_pgm": "dictionary_stand_1p",
+        "viz_main_popup_transformation": "N/A"
+        }
+},
+"ucdp_ged_ns_best_sum": {
+    "name": "(UCDP) Observed fatalities, non-state conflict",
+    "description": "The best (most likely) estimate of the total number of battle-related deaths (BRDs), disaggregated for non-state conflict per the Uppsala Conflict Data Program (UCDP) [definitions](https://www.pcr.uu.se/research/ucdp/definitions/) in the UCDP Georeferenced Events Dataset (UCDP GED) and the UCDP Candidate Events Dataset (UCDP Candidate).",
+    "unit": 
+        {
+        "unit_name": "Fatalities", 
+        "unit_type": "Int", 
+        "unit_range": "0-unlimited"
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1990-01",
+        "end_date": "2023-08"
+        }, 
+    "update": 
+        {
+        "frequency": "Monthly", 
+        "date_of_access": "2023-09"
+        }, 
+    "viewser_column": "ged_ns_best_sum_nokgi", 
+    "transformations": "'Nokgi'", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "Uppsala Conflict Data Program (UCDP)", 
+        "inst_URL": "https://ucdp.uu.se/", 
+        "var_URL": "N/A",
+        "var_ID": "best", 
+        "var_start_date": "1990-01",
+        "var_end_date": "2023-08",
+        "var_periodicity": "Monthly",
+        "dataset": "UCDP Georeferenced Events Dataset (GED) Global version 23.1; UCDP Candidate Events Dataset (UCDP Candidate) version 23.0.1 through version 23.0.6", 
+        "citation": "Davies et al. 2022. Organized violence 1989-2021 and drone warfare. Journal of Peace Research 59(4); Sundberg & Melander. 2013. Introducing the UCDP Georeferenced Event Dataset. Journal of Peace Research 50(4).", 
+        "license": "Please consult data provider."
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Observed fatalities",
+        "viz_main_colormap": "rainbow",
+        "viz_main_transformation": "ln",
+        "viz_main_dictionary_cm": "dictionary_stand_1p_10k",
+        "viz_main_dictionary_pgm": "dictionary_stand_1p",
+        "viz_main_popup_transformation": "None"
+        }
+},
+"ucdp_ged_ns_best_count": {
+    "name": "(UCDP) Count of observed conflict events, non-state conflict",
+    "description": "Count of the total number of observed non-state conflict events, per the Uppsala Conflict Data Program (UCDP) [definitions](https://www.pcr.uu.se/research/ucdp/definitions/). Aggregated from the UCDP Georeferenced Events Dataset (UCDP GED) and/or the UCDP Candidate Events Dataset (UCDP Candidate).",
+    "unit": 
+        {
+        "unit_name": "Fatalities", 
+        "unit_type": "Int", 
+        "unit_range": "0-unlimited"
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1990-01",
+        "end_date": "2023-08"
+        }, 
+    "update": 
+        {
+        "frequency": "Monthly", 
+        "date_of_access": "2023-09"
+        }, 
+    "viewser_column": "ged_ns_best_count_nokgi", 
+    "transformations": "'Nokgi'", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "Uppsala Conflict Data Program (UCDP)", 
+        "inst_URL": "https://ucdp.uu.se/", 
+        "var_URL": "N/A",
+        "var_ID": "best", 
+        "var_start_date": "1990-01",
+        "var_end_date": "2023-08",
+        "var_periodicity": "Monthly",
+        "dataset": "UCDP Georeferenced Events Dataset (GED) Global version 23.1; UCDP Candidate Events Dataset (UCDP Candidate) version 23.0.1 through version 23.0.6", 
+        "citation": "Davies et al. 2022. Organized violence 1989-2021 and drone warfare. Journal of Peace Research 59(4); Sundberg & Melander. 2013. Introducing the UCDP Georeferenced Event Dataset. Journal of Peace Research 50(4).", 
+        "license": "Please consult data provider."
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Observed conflict events (ns)",
+        "viz_main_colormap": "rainbow",
+        "viz_main_transformation": "ln",
+        "viz_main_dictionary_cm": "dictionary_stand_1p_10k",
+        "viz_main_dictionary_pgm": "dictionary_stand_1p",
+        "viz_main_popup_transformation": "None"
+        }
+},
+"ucdp_ged_os_best_count": {
+    "name": "(UCDP) Count of observed conflict events, one-sided violence",
+    "description": "Count of the total number of observed conflict events in the one-sided violence category, per the Uppsala Conflict Data Program (UCDP) [definitions](https://www.pcr.uu.se/research/ucdp/definitions/). Aggregated from the UCDP Georeferenced Events Dataset (UCDP GED) and/or the UCDP Candidate Events Dataset (UCDP Candidate).",
+    "unit": 
+        {
+        "unit_name": "Fatalities", 
+        "unit_type": "Int", 
+        "unit_range": "0-unlimited"
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1990-01",
+        "end_date": "2023-08"
+        }, 
+    "update": 
+        {
+        "frequency": "Monthly", 
+        "date_of_access": "2023-09"
+        }, 
+    "viewser_column": "ged_os_best_count_nokgi", 
+    "transformations": "'Nokgi'", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "Uppsala Conflict Data Program (UCDP)", 
+        "inst_URL": "https://ucdp.uu.se/", 
+        "var_URL": "N/A",
+        "var_ID": "best", 
+        "var_start_date": "1990-01",
+        "var_end_date": "2023-08",
+        "var_periodicity": "Monthly",
+        "dataset": "UCDP Georeferenced Events Dataset (GED) Global version 23.1; UCDP Candidate Events Dataset (UCDP Candidate) version 23.0.1 through version 23.0.6", 
+        "citation": "Davies et al. 2022. Organized violence 1989-2021 and drone warfare. Journal of Peace Research 59(4); Sundberg & Melander. 2013. Introducing the UCDP Georeferenced Event Dataset. Journal of Peace Research 50(4).", 
+        "license": "Please consult data provider."
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Observed conflict events (ns)",
+        "viz_main_colormap": "rainbow",
+        "viz_main_transformation": "ln",
+        "viz_main_dictionary_cm": "dictionary_stand_1p_10k",
+        "viz_main_dictionary_pgm": "dictionary_stand_1p",
+        "viz_main_popup_transformation": "None"
+        }
+},
+"ucdp_ged_os_best_sum": {
+    "name": "(UCDP) Observed fatalities, one-sided violence",
+    "description": "The best (most likely) estimate of the total number of battle-related deaths (BRDs), disaggregated for one-sided violence per the Uppsala Conflict Data Program (UCDP) [definitions](https://www.pcr.uu.se/research/ucdp/definitions/) in the UCDP Georeferenced Events Dataset (UCDP GED) and the UCDP Candidate Events Dataset (UCDP Candidate).",
+    "unit": 
+        {
+        "unit_name": "Fatalities", 
+        "unit_type": "Int", 
+        "unit_range": "0-unlimited" 
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1990-01",
+        "end_date": "2023-08"
+        }, 
+    "update": 
+        {
+        "frequency": "Monthly", 
+        "date_of_access": "2023-09"
+        }, 
+    "viewser_column": "ged_os_best_sum_nokgi", 
+    "transformations": "'Nokgi'",
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "Uppsala Conflict Data Program (UCDP)", 
+        "inst_URL": "https://ucdp.uu.se/", 
+        "var_URL": "N/A",
+        "var_ID": "best", 
+        "var_start_date": "1990-01",
+        "var_end_date": "2023-08",
+        "var_periodicity": "Monthly",
+        "dataset": "UCDP Georeferenced Events Dataset (GED) Global version 23.1; UCDP Candidate Events Dataset (UCDP Candidate) version 23.0.1 through version 23.0.6", 
+        "citation": "Davies et al. 2022. Organized violence 1989-2021 and drone warfare. Journal of Peace Research 59(4); Sundberg & Melander. 2013. Introducing the UCDP Georeferenced Event Dataset. Journal of Peace Research 50(4).", 
+        "license": "Please consult data provider."
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Observed fatalities",
+        "viz_main_colormap": "rainbow",
+        "viz_main_transformation": "ln",
+        "viz_main_dictionary_cm": "dictionary_stand_1p_10k",
+        "viz_main_dictionary_pgm": "dictionary_stand_1p",
+        "viz_main_popup_transformation": "None"
+        }
+},
+"vdem_v12_v2x_rule": {
+    "name": "(V-Dem) Rule of law index",
+    "description": "Index for the question 'To what extent are laws transparently, independently, predictably, impartially, and equally enforced, and to what extent do the actions of government officials comply with the law?'",
+    "unit": 
+        {
+        "unit_name": "Index", 
+        "unit_type": "Float", 
+        "unit_range": "Interval, from low to high (0-1)"
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1990-01",
+        "end_date": "2021-12"
+        }, 
+    "update": 
+        {
+        "frequency": "Annual", 
+        "date_of_access": "2022-05" 
+        }, 
+    "viewser_column": "vdem_v12_v2x_rule", 
+    "transformations": "N/A", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "Varieties of Democracy (V-Dem) Project", 
+        "inst_URL": "https://www.v-dem.net/", 
+        "var_URL": "N/A",
+        "var_ID": "v2x_rule", 
+        "var_start_date": "1789",
+        "var_end_date": "2021",
+        "var_periodicity": "Annual",  
+        "dataset": "Coppedge et al. 2022. 'V-Dem Country-Year Dataset v12' Varieties of Democracy (V-Dem) Project. https://doi.org/10.23696/vdemds22", 
+        "citation": "Pemstein et al. 2022. 'The V-Dem Measurement Model: Latent Variable Analysis for Cross-National and Cross-Temporal Expert-Coded Data'. V-Dem Working Paper No. 21. 7th edition. University of Gothenburg: Varieties of Democracy Institute; Coppedge et al. 2022. 'V-Dem Codebook v12' Varieties of Democracy (V-Dem) Project",
+        "license": "Please consult data provider."
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Rule of law index",
+        "viz_main_colormap": "viridis_r", 
+        "viz_main_transformation": "N/A", 
+        "viz_main_dictionary_cm": "dictionary_index_0_1", 
+        "viz_main_dictionary_pgm": "N/A",  
+        "viz_main_popup_transformation": "N/A"
+        }
+},
+"vdem_v12_v2x_gender": {
+    "name": "(V-Dem) Women political empowerment index",
+    "description": "Answers the question 'How politically empowered are women?'",
+    "unit": 
+        {
+        "unit_name": "Index", 
+        "unit_type": "Float", 
+        "unit_range": "Interval, from low to high (0-1)"
+        },   
+    "temporal_coverage": 
+        {
+        "start_date": "1990-01",
+        "end_date": "2021-12"
+        }, 
+    "update": 
+        {
+        "frequency": "Annual", 
+        "date_of_access": "2022-05"
+        }, 
+    "viewser_column": "vdem_v12_v2x_gender", 
+    "transformations": "N/A", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "Varieties of Democracy (V-Dem) Project", 
+        "inst_URL": "https://www.v-dem.net/", 
+        "var_URL": "N/A",
+        "var_ID": "v2x_gender", 
+        "var_start_date": "1789",
+        "var_end_date": "2021",
+        "var_periodicity": "Annual",  
+        "dataset": "Coppedge et al. 2022. 'V-Dem Country-Year Dataset v12' Varieties of Democracy (V-Dem) Project. https://doi.org/10.23696/vdemds22", 
+        "citation": "Sundström et al. (2017, V-Dem Working Paper Series 2017:19); Coppedge et al. 2022. 'V-Dem Codebook v12' Varieties of Democracy (V-Dem) Project",
+        "license": "Please consult data provider."
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Women political empowerment index",
+        "viz_main_colormap": "viridis_r", 
+        "viz_main_transformation": "N/A", 
+        "viz_main_dictionary_cm": "dictionary_index_0_1", 
+        "viz_main_dictionary_pgm": "N/A",  
+        "viz_main_popup_transformation": "N/A"
+        }
+},
+"vdem_v12_v2x_civlib": { 
+    "name": "(V-Dem) Civil liberties index",
+    "description": "Answers the question 'To what extent is civil liberty respected?'",
+    "unit": 
+        {
+        "unit_name": "Index", 
+        "unit_type": "Float", 
+        "unit_range": "Interval, from low to high (0-1)" 
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1990-01",
+        "end_date": "2021-12"
+        }, 
+    "update": 
+        {
+        "frequency": "Annual", 
+        "date_of_access": "2022-05"
+        }, 
+    "viewser_column": "vdem_v12_v2x_civlib", 
+    "transformations": "N/A", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "Varieties of Democracy (V-Dem) Project", 
+        "inst_URL": "https://www.v-dem.net",
+        "var_URL": "N/A", 
+        "var_ID": "v2x_civlib", 
+        "var_start_date": "1789",
+        "var_end_date": "2021",
+        "var_periodicity": "Annual",  
+        "dataset": "Coppedge et al. 2022. 'V-Dem Country-Year Dataset v12' Varieties of Democracy (V-Dem) Project. https://doi.org/10.23696/vdemds22", 
+        "citation": "Coppedge et al. 2022. 'V-Dem Codebook v12' Varieties of Democracy (V-Dem) Project",
+        "license": "Please consult data provider." 
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Civil liberties index",
+        "viz_main_colormap": "viridis_r", 
+        "viz_main_transformation": "N/A", 
+        "viz_main_dictionary_cm": "dictionary_index_0_1", 
+        "viz_main_dictionary_pgm": "N/A", 
+        "viz_main_popup_transformation": "N/A"
+        }
+},
+"vdem_v12_v2xcl_acjst": { 
+    "name": "(V-Dem) Access to justice index",
+    "description": "Answers the question 'Do citizens enjoy secure and effective access to justice?'",
+    "unit": 
+        {
+        "unit_name": "Index", 
+        "unit_type": "Float", 
+        "unit_range": "Interval, from low to high (0-1)" 
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1990-01",
+        "end_date": "2021-12"
+        }, 
+    "update": 
+        {
+        "frequency": "Annual", 
+        "date_of_access": "2022-05" 
+        }, 
+    "viewser_column": "vdem_v12_v2xcl_acjst", 
+    "transformations": "N/A", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "Varieties of Democracy (V-Dem) Project", 
+        "inst_URL": "https://www.v-dem.net",
+        "var_URL": "N/A", 
+        "var_ID": "v2xcl_acjst", 
+        "var_start_date": "1789",
+        "var_end_date": "2021",
+        "var_periodicity": "Annual",  
+        "dataset": "Coppedge et al. 2022. 'V-Dem Country-Year Dataset v12' Varieties of Democracy (V-Dem) Project. https://doi.org/10.23696/vdemds22", 
+        "citation": "Coppedge et al. 2022. 'V-Dem Codebook v12' Varieties of Democracy (V-Dem) Project",
+        "license": "Please consult data provider." 
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Access to justice index",
+        "viz_main_colormap": "viridis_r", 
+        "viz_main_transformation": "N/A", 
+        "viz_main_dictionary_cm": "dictionary_index_0_1", 
+        "viz_main_dictionary_pgm": "N/A", 
+        "viz_main_popup_transformation": "N/A"
+        }
+},
+"vdem_v12_v2xeg_eqdr": { 
+    "name": "(V-Dem) Equal distribution of resources index",
+    "description": "Answers the question 'How equal is the distribution of resources?'",
+    "unit": 
+        {
+        "unit_name": "Index", 
+        "unit_type": "Float", 
+        "unit_range": "Interval, from low to high (0-1)" 
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1990-01",
+        "end_date": "2021-12"
+        }, 
+    "update": 
+        {
+        "frequency": "Annual", 
+        "date_of_access": "2022-05" 
+        }, 
+    "viewser_column": "vdem_v12_v2xeg_eqdr", 
+    "transformations": "N/A", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "Varieties of Democracy (V-Dem) Project", 
+        "inst_URL": "https://www.v-dem.net",
+        "var_URL": "N/A", 
+        "var_ID": "v2xeg_eqdr", 
+        "var_start_date": "1789",
+        "var_end_date": "2021",
+        "var_periodicity": "Annual",  
+        "dataset": "Coppedge et al. 2022. 'V-Dem Country-Year Dataset v12' Varieties of Democracy (V-Dem) Project. https://doi.org/10.23696/vdemds22", 
+        "citation": "Pemstein et al. 2022. 'The V-Dem Measurement Model: Latent Variable Analysis for Cross-National and Cross-Temporal Expert-Coded Data'. V-Dem Working Paper No. 21. 7th edition. University of Gothenburg: Varieties of Democracy Institute; Coppedge et al. 2022. 'V-Dem Codebook v12' Varieties of Democracy (V-Dem) Project",
+        "license": "Please consult data provider." 
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Equal distribution of resources index",
+        "viz_main_colormap": "viridis_r", 
+        "viz_main_transformation": "N/A", 
+        "viz_main_dictionary_cm": "dictionary_index_0_1", 
+        "viz_main_dictionary_pgm": "N/A", 
+        "viz_main_popup_transformation": "N/A"
+        }
+},
+"vdem_v12_v2x_libdem": {
+    "name": "(V-Dem) Liberal democracy index",
+    "description": "Answers the question 'To what extent is the ideal of liberal democracy achieved?'",
+    "unit": 
+        {
+        "unit_name": "Index", 
+        "unit_type": "Float", 
+        "unit_range": "Interval, from low to high (0-1)"
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1990-01",
+        "end_date": "2021-12"
+        }, 
+    "update": 
+        {
+        "frequency": "Annual", 
+        "date_of_access": "2022-05" 
+        }, 
+    "viewser_column": "vdem_v12_v2x_libdem", 
+    "transformations": "N/A", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "Varieties of Democracy (V-Dem) Project", 
+        "inst_URL": "https://www.v-dem.net",
+        "var_URL": "N/A", 
+        "var_ID": "v2x_libdem", 
+        "var_start_date": "1789",
+        "var_end_date": "2021",
+        "var_periodicity": "Annual",  
+        "dataset": "Coppedge et al. 2022. 'V-Dem Country-Year Dataset v12' Varieties of Democracy (V-Dem) Project. https://doi.org/10.23696/vdemds22", 
+        "citation": "Pemstein et al. 2022. 'The V-Dem Measurement Model: Latent Variable Analysis for Cross-National and Cross-Temporal Expert-Coded Data'. V-Dem Working Paper No. 21. 7th edition. University of Gothenburg: Varieties of Democracy Institute; Coppedge et al. 2022. 'V-Dem Codebook v12' Varieties of Democracy (V-Dem) Project",
+        "license": "Please consult data provider." 
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Liberal democracy index",
+        "viz_main_colormap": "viridis_r", 
+        "viz_main_transformation": "N/A", 
+        "viz_main_dictionary_cm": "dictionary_index_0_1", 
+        "viz_main_dictionary_pgm": "N/A", 
+        "viz_main_popup_transformation": "N/A"
+        }
+},
+"wb_wdi_ny_gdp_pcap_kd": {
+    "name": "(WB WDI) GDP per capita (constant 2015 US$)",
+    "description": "GDP per capita is gross domestic product divided by midyear population. GDP is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. Data are in constant 2015 U.S. dollars.",
+    "unit": 
+        {
+        "unit_name": "Constant 2015 USD", 
+        "unit_type": "Float", 
+        "unit_range": "0-unlimited"    
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1980",
+        "end_date": "2021"
+        }, 
+    "update": 
+        {
+        "frequency": "TBD", 
+        "date_of_access": "2023-02-03", 
+        "comment": "Accessed using the 3rd party app WBGAPI (https://pypi.org/project/wbgapi/) by means of a query of the WDI database (db=2)."
+        }, 
+    "viewser_column": "wdi_ny_gdp_pcap_kd", 
+    "transformations": "N/A", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "World Bank", 
+        "inst_URL": "https://data.worldbank.org", 
+        "var_URL": "https://data.worldbank.org/indicator/NY.GDP.PCAP.KD", 
+        "var_ID": "NY.GDP.PCAP.KD", 
+        "var_start_date": "1960",
+        "var_end_date": "2021",
+        "var_periodicity": "Annual",  
+        "update_frequency": "Quarter", 
+        "update_schedule": "April, July, September, December", 
+        "dataset_name": "World Development Indicators",
+        "dataset_version": "202212",
+        "citation": "World Development Indicators, The World Bank", 
+        "license": "CC-BY 4.0, https://datacatalog.worldbank.org/public-licenses#cc-by" 
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "GDP per capita (constant 2015 US$)",
+        "viz_main_colormap": "viridis_r", 
+        "viz_main_transformation": "ln", 
+        "viz_main_dictionary_cm": "dictionary_gdp", 
+        "viz_main_dictionary_pgm": "N/A",
+        "viz_main_popup_transformation": "N/A"
+        }
+},
+"wb_wdi_sp_dyn_le00_in": {
+    "name": "(WB WDI) Life expectancy at birth, total (years)",
+    "description": "Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.",
+    "unit": 
+        {
+        "unit_name": "Years", 
+        "unit_type": "Float", 
+        "unit_range": "0-unlimited"
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1980",
+        "end_date": "2021"
+        }, 
+    "update": 
+        {
+        "frequency": "TBD", 
+        "date_of_access": "2023-02-03", 
+        "comment": "Accessed using the 3rd party app WBGAPI (https://pypi.org/project/wbgapi/) by means of a query of the WDI database (db=2)."
+        }, 
+    "viewser_column": "wdi_sp_dyn_le00_in", 
+    "transformations": "N/A", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "World Bank", 
+        "inst_URL": "https://data.worldbank.org", 
+        "var_URL": "https://data.worldbank.org/indicator/SP.DYN.LE00.IN", 
+        "var_ID": "SP.DYN.LE00.IN", 
+        "var_start_date": "1960",
+        "var_end_date": "2021",
+        "var_periodicity": "Annual",  
+        "update_frequency": "Quarter", 
+        "update_schedule": "April, July, September, December", 
+        "dataset_name": "World Development Indicators",
+        "dataset_version": "202212",
+        "citation": "World Development Indicators, The World Bank", 
+        "license": "CC-BY 4.0, https://datacatalog.worldbank.org/public-licenses#cc-by"
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Life expectancy (years)",
+        "viz_main_colormap": "viridis_r",
+        "viz_main_transformation": "N/A", 
+        "viz_main_dictionary_cm": "dictionary_index_0_100", 
+        "viz_main_dictionary_pgm": "N/A",
+        "viz_main_popup_transformation": "N/A"
+        }
+},
+"wb_wdi_se_prm_nenr": {
+    "name": "(WB WDI) School enrollment, primary (% net)",
+    "description": "Net enrollment rate is the ratio of children of official school age who are enrolled in school to the population of the corresponding official school age. Primary education provides children with basic reading, writing, and mathematics skills along with an elementary understanding of such subjects as history, geography, natural science, social science, art, and music.",
+    "unit": 
+        {
+        "unit_name": "Per cent (%)", 
+        "unit_type": "Float", 
+        "unit_range": "0-100"
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1980",
+        "end_date": "2021"
+        }, 
+    "update": 
+        {
+        "frequency": "TBD", 
+        "date_of_access": "2023-02-03", 
+        "comment": "Accessed using the 3rd party app WBGAPI (https://pypi.org/project/wbgapi/) by means of a query of the WDI database (db=2)."
+        }, 
+    "viewser_column": "wdi_se_prm_nenr", 
+    "transformations": "N/A", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "World Bank", 
+        "inst_URL": "https://data.worldbank.org", 
+        "var_URL": "https://data.worldbank.org/indicator/SE.PRM.NENR", 
+        "var_ID": "SE.PRM.NENR", 
+        "var_start_date": "1960",
+        "var_end_date": "2021",
+        "var_periodicity": "Annual",  
+        "update_frequency": "Quarter", 
+        "update_schedule": "April, July, September, December", 
+        "dataset_name": "World Development Indicators",
+        "dataset_version": "202212",
+        "citation": "World Development Indicators, The World Bank", 
+        "license": "CC-BY 4.0, https://datacatalog.worldbank.org/public-licenses#cc-by"
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Primary school enrollment (% net)",
+        "viz_main_colormap": "viridis_r", 
+        "viz_main_transformation": "N/A", 
+        "viz_main_dictionary_cm": "dictionary_index_0_100", 
+        "viz_main_dictionary_pgm": "N/A",  
+        "viz_main_popup_transformation": "N/A"
+        }
+},
+"wb_wdi_sp_pop_totl": {
+    "name": "(WB WDI) Total population",
+    "description": "Total population is based on the de facto definition of population, which counts all residents regardless of legal status or citizenship. The values shown are midyear estimates.",
+    "unit": 
+        {
+        "unit_name": "People", 
+        "unit_type": "Int", 
+        "unit_range": "0-100"
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1980",
+        "end_date": "2021"
+        }, 
+    "update": 
+        {
+        "frequency": "TBD", 
+        "date_of_access": "2023-02-03", 
+        "comment": "Accessed using the 3rd party app WBGAPI (https://pypi.org/project/wbgapi/) by means of a query of the WDI database (db=2)."
+        }, 
+    "viewser_column": "wdi_sp_pop_totl", 
+    "transformations": "N/A", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "World Bank", 
+        "inst_URL": "https://data.worldbank.org", 
+        "var_URL": "https://data.worldbank.org/indicator/SP.POP.TOTL", 
+        "var_ID": "SP.POP.TOTL", 
+        "var_start_date": "1960",
+        "var_end_date": "2021",
+        "var_periodicity": "Annual",  
+        "update_frequency": "Quarter", 
+        "update_schedule": "April, July, September, December", 
+        "dataset_name": "World Development Indicators",
+        "dataset_version": "202212",
+        "citation": "World Development Indicators, The World Bank", 
+        "license": "CC-BY 4.0, https://datacatalog.worldbank.org/public-licenses#cc-by" 
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Population (million people)",
+        "viz_main_colormap": "viridis", 
+        "viz_main_transformation": "ln", 
+        "viz_main_dictionary_cm": "dictionary_population", 
+        "viz_main_dictionary_pgm": "N/A", 
+        "viz_main_popup_transformation": "/1000000"
+        }
+},
+"wb_wdi_sp_dyn_imrt_in": {
+    "name": "(WB WDI) Infant mortality rate per 1,000 live births",
+    "description": "Infant mortality rate is the number of infants dying before reaching one year of age, per 1,000 live births in a given year.",
+    "unit": 
+        {
+        "unit_name": "Infant mortality rate", 
+        "unit_type": "Float", 
+        "unit_range": "0-100"
+        },
+    "temporal_coverage": 
+        {
+        "start_date": "1980",
+        "end_date": "2021"
+        }, 
+    "update": 
+        {
+        "frequency": "TBD", 
+        "date_of_access": "2023-02-03", 
+        "comment": "Accessed using the 3rd party app WBGAPI (https://pypi.org/project/wbgapi/) by means of a query of the WDI database (db=2)."
+        }, 
+    "viewser_column": "wdi_sp_dyn_imrt_in", 
+    "transformations": "N/A", 
+    "dev_id": "fatalities002",
+    "source": 
+        {
+        "inst_name": "World Bank", 
+        "inst_URL": "https://data.worldbank.org", 
+        "var_URL": "https://data.worldbank.org/indicator/SP.DYN.IMRT.IN", 
+        "var_ID": "SP.DYN.IMRT.IN", 
+        "var_start_date": "1960",
+        "var_end_date": "2021",
+        "var_periodicity": "Annual",  
+        "update_frequency": "Quarter", 
+        "update_schedule": "April, July, September, December", 
+        "dataset_name": "World Development Indicators",
+        "dataset_version": "202212",
+        "citation": "World Development Indicators, The World Bank", 
+        "license": "CC-BY 4.0, https://datacatalog.worldbank.org/public-licenses#cc-by" 
+        }, 
+    "visualization": 
+        {
+        "viz_main_legend": "Infant mortality rate per 1,000 live births",
+        "viz_main_colormap": "viridis", 
+        "viz_main_transformation": "N/A", 
+        "viz_main_dictionary_cm": "dictionary_imr", 
+        "viz_main_dictionary_pgm": "N/A", 
+        "viz_main_popup_transformation": "N/A"
+        }
+}
+}
