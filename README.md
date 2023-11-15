@@ -4,10 +4,11 @@ This repository documents the VIEWS API. It is written in `Python/FastAPI` and a
 
 The VIEWS API is available in _alpha_ testing mode at [https://api.viewsforecasting.org](https://api.viewsforecasting.org).
 
-To learn more about the VIEWS API and its content, please visit the [wiki pages](https://github.com/prio-data/views_api/wiki/). 
+# Wiki
 
+To learn more about the VIEWS API and how to access its content, please visit the [wiki pages](https://github.com/prio-data/views_api/wiki/). 
 
-## Questions?
+# Questions?
 
 Please contact [views@pcr.uu.se](mailto:views@pcr.uu.se).
 
